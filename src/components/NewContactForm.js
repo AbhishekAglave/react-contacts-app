@@ -9,21 +9,28 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: 10,
+    marginTop: 20,
     padding: 20,
     alignSelf: "center",
     "& .MuiTextField-root": {
-      margin: theme.spacing(1, 0),
+      margin: theme.spacing(2, 1),
       width: 380,
       height: "100%",
       '@media screen and (max-width: 992px)': {
-          width: "100%"
+          width: "100%",
+          margin: theme.spacing(1, 1)
       }
     },
   },
 }));
 
-export default function NewContactForm() {
+export default function NewContactForm(props) {
+
+  const {contactList, setContactList} = props;
+  function addContact(){
+    setContactList([...contactList, {}])
+  }
+
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -50,12 +57,14 @@ export default function NewContactForm() {
               id="standard-error"
               label="Phone Number"
               className="textfield"
+              type="tel"
               required
             />
             <TextField
               id="standard-error"
               label="Email Address"
               className="textfield"
+              type="email"
             />
           </div>
           <div className="company_title_inputs">
