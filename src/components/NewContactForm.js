@@ -26,10 +26,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewContactForm(props) {
 
-  const {contactList, setContactList} = props;
-  function addContact(){
-    setContactList([...contactList, {}])
-  }
+  // const {contactList, setContactList} = props;
+  // function addContact(){
+  //   setContactList([...contactList, {}])
+  // }
 
   const classes = useStyles();
   return (
