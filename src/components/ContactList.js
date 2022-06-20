@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import ContactItem from "./ContactItem";
 import ListHeader from "./ListHeader";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 
 function ContactList() {
-  const [contactlist, setContactlist] = useState([
+  const contactlist = [
     {
       name: "Abhishek Aglave",
       phone: 8530080493,
@@ -231,7 +231,7 @@ function ContactList() {
       phone: 7875237367,
       email: "aglave@gmail.com",
     },
-  ]);
+  ];
   return (
     <List>
       <ListHeader />
