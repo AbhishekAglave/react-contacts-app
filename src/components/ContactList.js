@@ -5,16 +5,16 @@ import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 
 function ContactList(props) {
-  const { contactlist } = props;
+  const contactList = props.contactList;
   return (
     <List>
       <ListHeader />
       <Divider />
       <div className="contact-list">
-        {contactlist.map((contact) => {
+        {contactList.map((contact) => {
           return (
             <ContactItem
-              name={contact.name}
+              name={contact.firstName+" "+contact.lastName}
               phone={contact.phone}
               email={contact.email}
             />

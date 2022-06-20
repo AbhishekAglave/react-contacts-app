@@ -53,7 +53,7 @@
 
 /********** add new contact form styling **********/
 
-.save_btn{
+.form-actions{
   position: relative;
   bottom: 10px;
   right: 10px;
