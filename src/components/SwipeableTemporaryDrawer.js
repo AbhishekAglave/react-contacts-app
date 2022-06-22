@@ -14,6 +14,7 @@ import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutline
 import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
 import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import ArrowBackIosOutlinedIcon from "@material-ui/icons/ArrowBackIosOutlined";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   list: {
@@ -70,10 +71,18 @@ export default function SwipeableTemporaryDrawer() {
             }
           />
           <IconButton>
-            <ArrowBackIosOutlinedIcon fontSize="small"/>
+            <ArrowBackIosOutlinedIcon fontSize="small" />
           </IconButton>
         </ListItem>
         <Divider />
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <ListItem button>
+            <ListItemIcon>
+              <FavoriteBorderOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+        </Link>
         <ListItem button>
           <ListItemIcon>
             <FavoriteBorderOutlinedIcon />

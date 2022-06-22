@@ -7,6 +7,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+import { borderRadius, padding } from "@mui/system";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +36,7 @@ export default function NewContactForm(props) {
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState();
   const [title, setTitle] = useState();
+  const [successMsgClass, setSuccessMsgClass] = useState('hidden');
 
   function addContact(event) {
     event.preventDefault();
@@ -51,6 +53,7 @@ export default function NewContactForm(props) {
     setCompany("");
     setTitle("");
     setContactList([...contactList, newContact]);
+    setSuccessMsgClass('success_msg');
   }
 
   useEffect(() => {
@@ -64,6 +67,15 @@ export default function NewContactForm(props) {
         <CardContent>
           <Typography variant="h5" gutterBottom>
             Create New Contact
+          </Typography>
+          <Typography className={successMsgClass}>
+            Contact saved successfully
+            <button type="reset" className="close"
+             onClick={()=>{
+              setSuccessMsgClass('hidden');
+             }}
+            
+            >🗙</button>
           </Typography>
           <div className="name_inputs">
             <TextField
@@ -135,11 +147,11 @@ export default function NewContactForm(props) {
               Discard
             </Button>
           </Link>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <Button type="submit" variant="contained" color="primary">
-              Save
-            </Button>
-          </Link>
+          {/* <Link to="/" style={{ textDecoration: "none" }}> */}
+          <Button type="submit" variant="contained" color="primary">
+            Save
+          </Button>
+          {/* </Link> */}
         </CardActions>
       </form>
     </Card>

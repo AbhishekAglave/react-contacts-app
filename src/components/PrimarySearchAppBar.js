@@ -13,6 +13,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import SwipeableTemporaryDrawer from "./SwipeableTemporaryDrawer";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -165,9 +166,11 @@ export default function PrimarySearchAppBar() {
           >
             <SwipeableTemporaryDrawer />
           </IconButton>
+          <Link to="/" style={{ textDecoration: "none", color: 'inherit' }}>
           <Typography className={classes.title} variant="h5" noWrap>
             Contacts
           </Typography>
+          </Link>
           <div className={classes.grow} />
           <div className={classes.search}>
             <div className={classes.searchIcon}>
