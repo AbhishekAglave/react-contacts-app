@@ -9,30 +9,32 @@ import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutline
 
 function ContactItem(props) {
   return (
-    <>
-      <ListItem button>
-        <ListItemIcon>
-          <AccountCircleOutlinedIcon />
-        </ListItemIcon>
-        <div className="name-div">
-          <ListItemText primary={props.name} />
-        </div>
-        <div className="phone-div">
+    <ListItem button>
+      <ListItemIcon>
+        <AccountCircleOutlinedIcon />
+      </ListItemIcon>
+      <div className="name-div">
+        <ListItemText primary={props.name} />
+      </div>
+      <div className="phone-div">
+        <a href={"tel:" + props.phone}>
           <ListItemText primary={props.phone} />
-        </div>
-        <div className="email-div">
+        </a>
+      </div>
+      <div className="email-div">
+        <a href={"mailto:" + props.email}>
           <ListItemText primary={props.email} />
-        </div>
-        <div className="itembuttons-div">
-          <IconButton>
-            <FavoriteBorderOutlinedIcon />
-          </IconButton>
-          <IconButton>
-            <EditOutlinedIcon />
-          </IconButton>
-        </div>
-      </ListItem>
-    </>
+        </a>
+      </div>
+      <div className="itembuttons-div">
+        <IconButton>
+          <FavoriteBorderOutlinedIcon />
+        </IconButton>
+        <IconButton>
+          <EditOutlinedIcon />
+        </IconButton>
+      </div>
+    </ListItem>
   );
 }
 

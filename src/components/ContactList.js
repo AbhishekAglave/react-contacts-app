@@ -14,7 +14,8 @@ function ContactList(props) {
         {contactList.map((contact) => {
           return (
             <ContactItem
-              name={contact.firstName+" "+contact.lastName}
+              key={contact.id}
+              name={contact.firstName + " " + contact.lastName}
               phone={contact.phone}
               email={contact.email}
             />

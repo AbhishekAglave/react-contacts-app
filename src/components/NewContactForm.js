@@ -33,18 +33,21 @@ export default function NewContactForm(props) {
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [company, setCompany] = useState();
-  const [title, setTitle] = useState();
-  const [successMsgClass, setSuccessMsgClass] = useState('hidden');
-
+  const [company, setCompany] = useState("");
+  const [title, setTitle] = useState("");
+  const [successMsgClass, setSuccessMsgClass] = useState("hidden");
+  let contactId = localStorage.getItem("lastContactId") || -1;
   function addContact(event) {
+    contactId = Number(contactId);
     event.preventDefault();
     const newContact = {
+      id: contactId + 1,
       firstName: firstName,
       lastName: lastName,
       phone: phone,
       email: email,
     };
+    localStorage.setItem("lastContactId", contactId + 1);
     setFirstName("");
     setLastName("");
     setPhone("");
@@ -52,7 +55,7 @@ export default function NewContactForm(props) {
     setCompany("");
     setTitle("");
     setContactList([...contactList, newContact]);
-    setSuccessMsgClass('success_msg');
+    setSuccessMsgClass("success_msg");
   }
 
   useEffect(() => {
@@ -62,19 +65,22 @@ export default function NewContactForm(props) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
-      <form onSubmit={addContact} validate autoComplete="off">
+      <form onSubmit={addContact} autoComplete="off">
         <CardContent>
           <Typography variant="h5" gutterBottom>
             Create New Contact
           </Typography>
           <Typography className={successMsgClass}>
-            Contact saved successfully
-            <button type="reset" className="close"
-             onClick={()=>{
-              setSuccessMsgClass('hidden');
-             }}
-            
-            >🗙</button>
+            Contact added successfully
+            <button
+              type="reset"
+              className="close"
+              onClick={() => {
+                setSuccessMsgClass("hidden");
+              }}
+            >
+              🗙
+            </button>
           </Typography>
           <div className="name_inputs">
             <TextField
@@ -84,6 +90,7 @@ export default function NewContactForm(props) {
               required
               onChange={(event) => {
                 setFirstName(event.target.value);
+                setSuccessMsgClass("hidden");
               }}
               value={firstName}
             />
@@ -93,6 +100,7 @@ export default function NewContactForm(props) {
               className="textfield"
               onChange={(event) => {
                 setLastName(event.target.value);
+                setSuccessMsgClass("hidden");
               }}
               value={lastName}
             />
@@ -104,7 +112,10 @@ export default function NewContactForm(props) {
               className="textfield"
               type="tel"
               onChange={(event) => {
-                setPhone(event.target.value);
+                if (!isNaN(event.target.value)) {
+                  setPhone(event.target.value);
+                  setSuccessMsgClass("hidden");
+                }
               }}
               value={phone}
             />
@@ -115,6 +126,7 @@ export default function NewContactForm(props) {
               type="email"
               onChange={(event) => {
                 setEmail(event.target.value);
+                setSuccessMsgClass("hidden");
               }}
               value={email}
             />
@@ -126,6 +138,7 @@ export default function NewContactForm(props) {
               className="textfield"
               onChange={(event) => {
                 setCompany(event.target.value);
+                setSuccessMsgClass("hidden");
               }}
               value={company}
             />
@@ -135,6 +148,7 @@ export default function NewContactForm(props) {
               className="textfield"
               onChange={(event) => {
                 setTitle(event.target.value);
+                setSuccessMsgClass("hidden");
               }}
               value={title}
             />

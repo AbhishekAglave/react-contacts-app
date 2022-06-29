@@ -14,6 +14,7 @@ import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutline
 import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
 import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import ArrowBackIosOutlinedIcon from "@material-ui/icons/ArrowBackIosOutlined";
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
@@ -78,7 +79,7 @@ export default function SwipeableTemporaryDrawer() {
         <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <ListItem button>
             <ListItemIcon>
-              <FavoriteBorderOutlinedIcon />
+              <HomeOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
