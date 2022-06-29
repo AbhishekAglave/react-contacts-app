@@ -93,6 +93,7 @@ export default function NewContactForm(props) {
                 setSuccessMsgClass("hidden");
               }}
               value={firstName}
+              autoFocus
             />
             <TextField
               id="standard-error"
