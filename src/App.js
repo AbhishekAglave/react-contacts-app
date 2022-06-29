@@ -25,7 +25,7 @@ function App() {
               path="/"
               element={
                 <>
-                  <ContactList contactList={contactList} />
+                  <ContactList contactList={contactList} setContactList={setContactList}/>
                   <AddButton />
                 </>
               }

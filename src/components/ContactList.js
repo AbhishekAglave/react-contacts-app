@@ -6,9 +6,10 @@ import Divider from "@material-ui/core/Divider";
 
 function ContactList(props) {
   const contactList = props.contactList;
+  const setContactList = props.setContactList;
   return (
     <List>
-      <ListHeader />
+      <ListHeader contactList={contactList} setContactList={setContactList} />
       <Divider />
       <div className="contact-list">
         {contactList.map((contact) => {

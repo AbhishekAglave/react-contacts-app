@@ -17,12 +17,12 @@ function ContactItem(props) {
         <ListItemText primary={props.name} />
       </div>
       <div className="phone-div">
-        <a href={"tel:" + props.phone}>
+        <a href={"tel:" + props.phone} style={{textDecoration: 'none'}}>
           <ListItemText primary={props.phone} />
         </a>
       </div>
       <div className="email-div">
-        <a href={"mailto:" + props.email}>
+        <a href={"mailto:" + props.email} style={{textDecoration: 'none'}}>
           <ListItemText primary={props.email} />
         </a>
       </div>
