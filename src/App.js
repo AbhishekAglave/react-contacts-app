@@ -10,7 +10,7 @@ function App() {
   const [contactList, setContactList] = useState(
     JSON.parse(localStorage.getItem("contactList")) || []
   );
-
+  
   return (
     <BrowserRouter>
       <div className="App">

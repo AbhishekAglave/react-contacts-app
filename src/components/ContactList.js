@@ -8,22 +8,25 @@ function ContactList(props) {
   const contactList = props.contactList;
   const setContactList = props.setContactList;
   return (
-    <List>
-      <ListHeader contactList={contactList} setContactList={setContactList} />
-      <Divider />
-      <div className="contact-list">
-        {contactList.map((contact) => {
-          return (
-            <ContactItem
-              key={contact.id}
-              name={contact.firstName + " " + contact.lastName}
-              phone={contact.phone}
-              email={contact.email}
-            />
-          );
-        })}
-      </div>
-    </List>
+      <List>
+        <ListHeader contactList={contactList} setContactList={setContactList} />
+        <Divider />
+        <div className="contact-list">
+          {contactList.map((contact) => {
+            return (
+              <ContactItem
+                key={contact.id}
+                id={contact.id}
+                name={contact.firstName + " " + contact.lastName}
+                phone={contact.phone}
+                email={contact.email}
+                contactList={contactList}
+                setContactList={setContactList}
+              />
+            );
+          })}
+        </div>
+      </List>
   );
 }
 
