@@ -10,11 +10,11 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import { IconButton } from "@material-ui/core";
-import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
-import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
-import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
+import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
+import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
+import ArchiveRoundedIcon from '@material-ui/icons/ArchiveRounded';
 import ArrowBackIosOutlinedIcon from "@material-ui/icons/ArrowBackIosOutlined";
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
@@ -79,26 +79,26 @@ export default function SwipeableTemporaryDrawer() {
         <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <ListItem button>
             <ListItemIcon>
-              <HomeOutlinedIcon />
+              <HomeRoundedIcon/>
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
         </Link>
         <ListItem button>
           <ListItemIcon>
-            <FavoriteBorderOutlinedIcon />
+            <FavoriteRoundedIcon />
           </ListItemIcon>
           <ListItemText primary="Favorites" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <ArchiveOutlinedIcon />
+            <ArchiveRoundedIcon />
           </ListItemIcon>
           <ListItemText primary="Other Contacts" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <DeleteOutlineOutlinedIcon />
+            <DeleteRoundedIcon />
           </ListItemIcon>
           <ListItemText primary="Trash" />
         </ListItem>

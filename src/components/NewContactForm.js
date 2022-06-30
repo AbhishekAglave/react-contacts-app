@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -6,7 +6,7 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 export default function NewContactForm(props) {
   const contactList = props.contactList;
   const setContactList = props.setContactList;
+  const firstNameInput = useRef(null);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -36,6 +37,8 @@ export default function NewContactForm(props) {
   const [company, setCompany] = useState("");
   const [title, setTitle] = useState("");
   const [successMsgClass, setSuccessMsgClass] = useState("hidden");
+  const navigate = useNavigate();
+
   let contactId = localStorage.getItem("lastContactId") || -1;
   function addContact(event) {
     contactId = Number(contactId);
@@ -60,12 +63,13 @@ export default function NewContactForm(props) {
 
   useEffect(() => {
     localStorage.setItem("contactList", JSON.stringify(contactList));
+    firstNameInput.current.focus();
   }, [contactList]);
 
   const classes = useStyles();
   return (
     <Card className={classes.root}>
-      <form onSubmit={addContact} autoComplete="off">
+      <form onSubmit={addContact} autoComplete="off" className="newContactForm">
         <CardContent>
           <Typography variant="h5" gutterBottom>
             Create New Contact
@@ -93,6 +97,7 @@ export default function NewContactForm(props) {
                 setSuccessMsgClass("hidden");
               }}
               value={firstName}
+              ref={firstNameInput}
               autoFocus
             />
             <TextField
@@ -156,16 +161,19 @@ export default function NewContactForm(props) {
           </div>
         </CardContent>
         <CardActions className="form-actions">
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <Button type="reset" variant="contained" color="primary">
-              Discard
-            </Button>
-          </Link>
-          {/* <Link to="/" style={{ textDecoration: "none" }}> */}
+          <Button
+            type="reset"
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              navigate('/');
+            }}
+          >
+            Discard
+          </Button>
           <Button type="submit" variant="contained" color="primary">
             Save
           </Button>
-          {/* </Link> */}
         </CardActions>
       </form>
     </Card>
