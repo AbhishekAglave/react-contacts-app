@@ -42,6 +42,7 @@ function ListHeader(props) {
       return contact;
     });
     setContactList(newContactList);
+    setSelectionMode(false);
     setAnchorEl(null);
   };
   const unSelectAll = () => {
