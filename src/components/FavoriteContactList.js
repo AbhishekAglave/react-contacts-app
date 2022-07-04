@@ -1,36 +1,41 @@
 import React from "react";
 import ContactItem from "./ContactItem";
-import ListHeader from "./ListHeader";
+import FavoriteListHeader from "./FavoriteListHeader";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
-import NoContacts from "./NoContacts";
+import NoFavoriteContact from "./NoFavoriteContact";
 
 function FavoriteContactList(props) {
   const contactList = props.contactList;
   const setContactList = props.setContactList;
+  let noFavsFound = true;
   return (
     <List>
-      <ListHeader contactList={contactList} setContactList={setContactList} />
+      <FavoriteListHeader
+        contactList={contactList}
+        setContactList={setContactList}
+      />
       <Divider />
       <div className="contact-list">
-        {contactList.length === 0 ? <NoContacts /> : null}
         {contactList.map((contact) => {
           if (contact.favorite) {
+            noFavsFound=false;
             return (
               <ContactItem
-                key={contact.id}
-                id={contact.id}
-                name={contact.firstName + " " + contact.lastName}
-                phone={contact.phone}
-                email={contact.email}
-                favorite={contact.favorite}
-                contactList={contactList}
-                setContactList={setContactList}
+              key={contact.id}
+              id={contact.id}
+              name={contact.firstName + " " + contact.lastName}
+              phone={contact.phone}
+              email={contact.email}
+              favorite={contact.favorite}
+              contactList={contactList}
+              setContactList={setContactList}
               />
-            );
-          }
-          return false;
-        })}
+              );
+            }
+            return false;
+          })}
+          {noFavsFound ? <NoFavoriteContact /> : null}
       </div>
     </List>
   );

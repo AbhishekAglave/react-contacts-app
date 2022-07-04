@@ -8,10 +8,14 @@ import ListItemText from "@material-ui/core/ListItemText";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+// import { useNavigate } from "react-router-dom";
+import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
 
 function ContactItem(props) {
   const contactList = props.contactList;
   const setContactList = props.setContactList;
+  // const navigate = useNavigate();
 
   function deleteContactItem(id) {
     const newContactList = contactList.filter((contact) => {
@@ -30,24 +34,50 @@ function ContactItem(props) {
     });
     setContactList(newContactList);
   }
+  function select(id) {
+    const newContactList = contactList.map((contact) => {
+      if (contact.id === id) {
+        contact.selected
+          ? (contact.selected = false)
+          : (contact.selected = true);
+      }
+      return contact;
+    });
+    setContactList(newContactList);
+  }
+  function viewContact() {
+    // navigate("/ViewContact");
+  }
 
   return (
     <ListItem button>
       <ListItemIcon>
-        <AccountCircleOutlinedIcon />
+        {props.selectionMode ? (
+          props.selected ? (
+            <CheckBoxOutlinedIcon
+              onClick={() => {
+                select(props.id);
+              }}
+            />
+          ) : (
+            <CheckBoxOutlineBlankIcon
+              onClick={() => {
+                select(props.id);
+              }}
+            />
+          )
+        ) : (
+          <AccountCircleOutlinedIcon />
+        )}
       </ListItemIcon>
       <div className="name-div">
-        <ListItemText primary={props.name} />
+        <ListItemText primary={props.name} onClick={viewContact} />
       </div>
       <div className="phone-div">
-        <a href={"tel:" + props.phone} style={{ textDecoration: "none" }}>
-          <ListItemText primary={props.phone} />
-        </a>
+        <ListItemText primary={props.phone} onClick={viewContact} />
       </div>
       <div className="email-div">
-        <a href={"mailto:" + props.email} style={{ textDecoration: "none" }}>
-          <ListItemText primary={props.email} />
-        </a>
+        <ListItemText primary={props.email} onClick={viewContact} />
       </div>
       <div className="itembuttons-div">
         <IconButton
@@ -55,7 +85,7 @@ function ContactItem(props) {
             makeFavoriteUnfavorite(props.id);
           }}
         >
-          {props.favorite? <FavoriteIcon/>:<FavoriteBorderOutlinedIcon/>}
+          {props.favorite ? <FavoriteIcon /> : <FavoriteBorderOutlinedIcon />}
         </IconButton>
         <IconButton
           onClick={() => {

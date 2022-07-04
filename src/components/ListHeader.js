@@ -8,11 +8,15 @@ import IconButton from "@material-ui/core/IconButton";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 
 function ListHeader(props) {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [sorted, setSorted] = useState(true);
   const contactList = props.contactList;
   const setContactList = props.setContactList;
+  const selectionMode = props.selectionMode;
+  const setSelectionMode = props.setSelectionMode;
 
   useEffect(() => {
     localStorage.setItem("contactList", JSON.stringify(contactList));
@@ -25,11 +29,50 @@ function ListHeader(props) {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
-  const deleteAllContacts = () =>{
+  const deleteAllContacts = () => {
     setContactList([]);
-    localStorage.removeItem('lastContactId');
+    localStorage.removeItem("lastContactId");
     setAnchorEl(null);
-  }
+  };
+  const deleteSelectedContacts = () => {
+    const newContactList = contactList.filter((contact) => {
+      if (contact.selected) {
+        return false;
+      }
+      return contact;
+    });
+    setContactList(newContactList);
+    setAnchorEl(null);
+  };
+  const unSelectAll = () => {
+    const newContactList = contactList.map((contact) => {
+      if (contact.selected) {
+        contact.selected = false;
+      }
+      return contact;
+    });
+    setContactList(newContactList);
+  };
+
+  const sortContacts = () => {
+    const newContactList = contactList.sort((a, b) => {
+      if (sorted) {
+        if (a.firstName > b.firstName) {
+          return 1;
+        } else {
+          return -1;
+        }
+      } else {
+        if (a.firstName < b.firstName) {
+          return 1;
+        } else {
+          return -1;
+        }
+      }
+    });
+    setContactList(newContactList);
+  };
+
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -39,14 +82,32 @@ function ListHeader(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={deleteAllContacts}>Delete All</MenuItem>
+      {selectionMode ? (
+        <MenuItem onClick={deleteSelectedContacts}>Delete Selected</MenuItem>
+      ) : (
+        <MenuItem onClick={deleteAllContacts}>Delete All</MenuItem>
+      )}
     </Menu>
   );
 
   return (
     <ListItem className="list_header">
       <ListItemIcon>
-        <CheckBoxOutlinedIcon />
+        {selectionMode ? (
+          <CheckBoxOutlinedIcon
+            onClick={() => {
+              setSelectionMode(false);
+              unSelectAll();
+            }}
+          />
+        ) : (
+          <CheckBoxOutlineBlankIcon
+            onClick={() => {
+              setSelectionMode(true);
+              unSelectAll();
+            }}
+          />
+        )}
       </ListItemIcon>
       <div className="name-div">
         <ListItemText primary="Name" />
@@ -58,7 +119,18 @@ function ListHeader(props) {
         <ListItemText primary="Email" />
       </div>
       <div className="itembuttons-div">
-        <IconButton>
+        <IconButton
+          onClick={() => {
+            sortContacts();
+            setSelectionMode(false);
+            unSelectAll();
+            if (sorted) {
+              setSorted(false);
+            } else {
+              setSorted(true);
+            }
+          }}
+        >
           <SortIcon />
         </IconButton>
         <IconButton aria-haspopup="true" onClick={handleMenuOpen}>

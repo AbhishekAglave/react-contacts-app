@@ -52,6 +52,7 @@ export default function NewContactForm(props) {
       phone: phone,
       email: email,
       favorite: false,
+      selected: false,
     };
     localStorage.setItem("lastContactId", contactId + 1);
     setFirstName("");
