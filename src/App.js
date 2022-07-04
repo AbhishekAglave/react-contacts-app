@@ -5,12 +5,13 @@ import AddButton from "./components/AddContact";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NewContactForm from "./components/NewContactForm";
 import React, { useState } from "react";
+import FavoriteContactList from "./components/FavoriteContactList";
 
 function App() {
   const [contactList, setContactList] = useState(
     JSON.parse(localStorage.getItem("contactList")) || []
   );
-  
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -25,7 +26,22 @@ function App() {
               path="/"
               element={
                 <>
-                  <ContactList contactList={contactList} setContactList={setContactList}/>
+                  <ContactList
+                    contactList={contactList}
+                    setContactList={setContactList}
+                  />
+                  <AddButton />
+                </>
+              }
+            />
+            <Route
+              path="/Favorites"
+              element={
+                <>
+                  <FavoriteContactList
+                    contactList={contactList}
+                    setContactList={setContactList}
+                  />
                   <AddButton />
                 </>
               }

@@ -84,12 +84,14 @@ export default function SwipeableTemporaryDrawer() {
             <ListItemText primary="Home" />
           </ListItem>
         </Link>
+        <Link to="/Favorites" style={{ textDecoration: "none", color: "inherit" }}>
         <ListItem button>
           <ListItemIcon>
             <FavoriteRoundedIcon />
           </ListItemIcon>
           <ListItemText primary="Favorites" />
         </ListItem>
+        </Link>
         <ListItem button>
           <ListItemIcon>
             <ArchiveRoundedIcon />
