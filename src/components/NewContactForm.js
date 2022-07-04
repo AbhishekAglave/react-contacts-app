@@ -7,6 +7,8 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import { useNavigate } from "react-router-dom";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,6 +51,7 @@ export default function NewContactForm(props) {
       lastName: lastName,
       phone: phone,
       email: email,
+      favorite: false,
     };
     localStorage.setItem("lastContactId", contactId + 1);
     setFirstName("");
@@ -70,10 +73,18 @@ export default function NewContactForm(props) {
   return (
     <Card className={classes.root}>
       <form onSubmit={addContact} autoComplete="off" className="newContactForm">
+        <Typography variant="h5">
+          <IconButton
+          
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            <ArrowBackIcon className="formBackButton" />
+          </IconButton>
+          Create New Contact
+        </Typography>
         <CardContent>
-          <Typography variant="h5" gutterBottom>
-            Create New Contact
-          </Typography>
           <Typography className={successMsgClass}>
             Contact added successfully
             <button
@@ -166,7 +177,7 @@ export default function NewContactForm(props) {
             variant="contained"
             color="primary"
             onClick={() => {
-              navigate('/');
+              navigate("/");
             }}
           >
             Discard

@@ -49,8 +49,6 @@
   right: 20px;
 }
 
-
-
 /********** add new contact form styling **********/
 
 .form-actions{
@@ -78,4 +76,7 @@
 }
 .hidden{
   visibility: hidden;
+}
+.formBackButton{
+  padding-bottom: 4px;
 }
