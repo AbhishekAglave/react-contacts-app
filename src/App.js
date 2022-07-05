@@ -2,7 +2,7 @@ import "./App.css";
 import ContactList from "./components/ContactList";
 import PrimarySearchAppBar from "./components/PrimarySearchAppBar";
 import AddButton from "./components/AddContact";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NewContactForm from "./components/NewContactForm";
 import React, { useState } from "react";
 import FavoriteContactList from "./components/FavoriteContactList";
