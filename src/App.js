@@ -67,7 +67,6 @@ function App() {
                 </>
               }
             />
-            <Route path='/:anyother' element={<Navigate replace to="/" />}/>
             <Route
               path="/Search"
               element={
