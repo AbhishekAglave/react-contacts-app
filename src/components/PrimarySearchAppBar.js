@@ -11,7 +11,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import SwipeableTemporaryDrawer from "./SwipeableTemporaryDrawer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -78,14 +78,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(props) {
+  const navigate = useNavigate();
   const classes = useStyles();
+  const searchKey = props.searchKey;
+  const setSearchKey = props.setSearchKey;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -148,13 +150,18 @@ export default function PrimarySearchAppBar() {
           >
             <SwipeableTemporaryDrawer />
           </IconButton>
-          <Link to="/" style={{ textDecoration: "none", color: 'inherit' }}>
-          <Typography className={classes.title} variant="h5" noWrap>
-            Contacts
-          </Typography>
+          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+            <Typography className={classes.title} variant="h5" noWrap>
+              Contacts
+            </Typography>
           </Link>
           <div className={classes.grow} />
-          <div className={classes.search}>
+          <div
+            className={classes.search}
+            onClick={() => {
+              navigate("/Search");
+            }}
+          >
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -165,6 +172,10 @@ export default function PrimarySearchAppBar() {
                 input: classes.inputInput,
               }}
               inputProps={{ "aria-label": "search" }}
+              onChange={(event) => {
+                setSearchKey(event.target.value);
+              }}
+              value={searchKey}
             />
           </div>
           <div className={classes.sectionDesktop}>

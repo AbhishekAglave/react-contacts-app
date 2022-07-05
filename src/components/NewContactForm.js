@@ -130,12 +130,14 @@ export default function NewContactForm(props) {
               className="textfield"
               type="tel"
               onChange={(event) => {
-                if (!isNaN(event.target.value)) {
-                  setPhone(event.target.value);
+                const number = event.target.value;
+                if (!isNaN(number)) {
+                  setPhone(number);
                   setSuccessMsgClass("hidden");
                 }
               }}
               value={phone}
+              inputProps={{ maxLength: 10 }}
             />
             <TextField
               id="standard-error"

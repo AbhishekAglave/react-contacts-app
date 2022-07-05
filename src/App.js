@@ -6,18 +6,51 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NewContactForm from "./components/NewContactForm";
 import React, { useState } from "react";
 import FavoriteContactList from "./components/FavoriteContactList";
+import SearchList from "./components/SearchList";
 
 function App() {
   const [contactList, setContactList] = useState(
-    JSON.parse(localStorage.getItem("contactList")) || []
+    JSON.parse(localStorage.getItem("contactList")) || [
+      {
+        id: 1,
+        firstName: 'firstName',
+        lastName: 'lastName1',
+        phone: 9586484596,
+        email: 'email@example.com',
+        favorite: false,
+        selected: false,
+      },
+      {
+        id: 2,
+        firstName: 'firstName',
+        lastName: 'lastName2',
+        phone: 6988845962,
+        email: 'email@example.com2',
+        favorite: false,
+        selected: false,
+      },
+      {
+        id: 3,
+        firstName: 'firstName',
+        lastName: 'lastName3',
+        phone: 7412484596,
+        email: 'email@example.com3',
+        favorite: false,
+        selected: false,
+      },
+    ]
   );
+  const [searchKey, setSearchKey] = useState("");
 
   return (
     <BrowserRouter>
       <div className="App">
         <header className="App-header">
           <nav className="navbar">
-            <PrimarySearchAppBar />
+            <PrimarySearchAppBar
+              searchKey={searchKey}
+              setSearchKey={setSearchKey}
+            />
           </nav>
         </header>
         <main className="main-content">
@@ -29,6 +62,19 @@ function App() {
                   <ContactList
                     contactList={contactList}
                     setContactList={setContactList}
+                  />
+                  <AddButton />
+                </>
+              }
+            />
+            <Route
+              path="/Search"
+              element={
+                <>
+                  <SearchList
+                    contactList={contactList}
+                    setContactList={setContactList}
+                    searchKey={searchKey}
                   />
                   <AddButton />
                 </>
