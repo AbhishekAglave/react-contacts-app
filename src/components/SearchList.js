@@ -25,7 +25,9 @@ function SearchList(props) {
           ? contactList.map((contact) => {
               if (
                 contact.firstName.toLowerCase().includes(searchKey.toLowerCase()) ||
-                contact.lastName.toLowerCase().includes(searchKey.toLowerCase())
+                contact.lastName.toLowerCase().includes(searchKey.toLowerCase()) ||
+                contact.phone.toString().includes(searchKey.toLowerCase()) ||
+                contact.email.toLowerCase().includes(searchKey.toLowerCase())
               ) {
                 return (
                   <ContactItem
@@ -48,7 +50,9 @@ function SearchList(props) {
           : contactList.map((contact) => {
               if (
                 contact.firstName.toLowerCase().includes(searchKey.toLowerCase()) ||
-                contact.lastName.toLowerCase().includes(searchKey.toLowerCase())
+                contact.lastName.toLowerCase().includes(searchKey.toLowerCase()) ||
+                contact.phone.toString().includes(searchKey.toLowerCase()) ||
+                contact.email.toLowerCase().includes(searchKey.toLowerCase())
               ) {
                 return (
                   <ContactItem

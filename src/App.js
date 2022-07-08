@@ -7,38 +7,42 @@ import NewContactForm from "./components/NewContactForm";
 import React, { useState } from "react";
 import FavoriteContactList from "./components/FavoriteContactList";
 import SearchList from "./components/SearchList";
+import TrashList from "./components/TrashList";
 
 function App() {
   const [contactList, setContactList] = useState(
     JSON.parse(localStorage.getItem("contactList")) || [
       {
         id: 1,
-        firstName: 'firstName',
-        lastName: 'lastName1',
+        firstName: "firstName",
+        lastName: "lastName1",
         phone: 9586484596,
-        email: 'email@example.com',
+        email: "email@example.com",
         favorite: false,
         selected: false,
       },
       {
         id: 2,
-        firstName: 'firstName',
-        lastName: 'lastName2',
+        firstName: "firstName",
+        lastName: "lastName2",
         phone: 6988845962,
-        email: 'email@example.com2',
+        email: "email@example.com2",
         favorite: false,
         selected: false,
       },
       {
         id: 3,
-        firstName: 'firstName',
-        lastName: 'lastName3',
+        firstName: "firstName",
+        lastName: "lastName3",
         phone: 7412484596,
-        email: 'email@example.com3',
+        email: "email@example.com3",
         favorite: false,
         selected: false,
       },
     ]
+  );
+  const [trashList, setTrashList] = useState(
+    JSON.parse(localStorage.getItem("trashList")) || []
   );
   const [searchKey, setSearchKey] = useState("");
 
@@ -62,6 +66,8 @@ function App() {
                   <ContactList
                     contactList={contactList}
                     setContactList={setContactList}
+                    trashList={trashList}
+                    setTrashList={setTrashList}
                   />
                   <AddButton />
                 </>
@@ -88,6 +94,15 @@ function App() {
                     contactList={contactList}
                     setContactList={setContactList}
                   />
+                  <AddButton />
+                </>
+              }
+            />
+            <Route
+              path="/Trash"
+              element={
+                <>
+                  <TrashList/>
                   <AddButton />
                 </>
               }

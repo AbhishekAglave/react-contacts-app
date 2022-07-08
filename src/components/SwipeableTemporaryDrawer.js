@@ -12,7 +12,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { IconButton } from "@material-ui/core";
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
-import ArchiveRoundedIcon from '@material-ui/icons/ArchiveRounded';
+// import ArchiveRoundedIcon from '@material-ui/icons/ArchiveRounded';
 import ArrowBackIosOutlinedIcon from "@material-ui/icons/ArrowBackIosOutlined";
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import { Link } from "react-router-dom";
@@ -92,18 +92,20 @@ export default function SwipeableTemporaryDrawer() {
           <ListItemText primary="Favorites" />
         </ListItem>
         </Link>
-        <ListItem button>
+        {/* <ListItem button>
           <ListItemIcon>
             <ArchiveRoundedIcon />
           </ListItemIcon>
           <ListItemText primary="Other Contacts" />
-        </ListItem>
+        </ListItem> */}
+        <Link to="/Trash" style={{ textDecoration: "none", color: "inherit" }}>
         <ListItem button>
           <ListItemIcon>
             <DeleteRoundedIcon />
           </ListItemIcon>
           <ListItemText primary="Trash" />
         </ListItem>
+        </Link>
       </List>
     </div>
   );
