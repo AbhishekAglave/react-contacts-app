@@ -102,7 +102,12 @@ function App() {
               path="/Trash"
               element={
                 <>
-                  <TrashList/>
+                  <TrashList
+                    contactList={contactList}
+                    setContactList={setContactList}
+                    trashList={trashList}
+                    setTrashList={setTrashList}
+                  />
                   <AddButton />
                 </>
               }

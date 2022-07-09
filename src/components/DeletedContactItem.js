@@ -4,46 +4,37 @@ import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined"
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-// import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
-import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-// import { useNavigate } from "react-router-dom";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
+import RefreshIcon from "@material-ui/icons/Refresh";
 
-function ContactItem(props) {
+function DeletedContactItem(props) {
   const contactList = props.contactList;
   const setContactList = props.setContactList;
   const trashList = props.trashList;
   const setTrashList = props.setTrashList;
-  // const navigate = useNavigate();
 
   function deleteContactItem(id) {
-    const newContactList = contactList.filter((contact) => {
-      if(contact.id===id){
-        moveToTrash(contact);
-      }
+    const newContactList = trashList.filter((contact) => {
       return contact.id !== id;
     });
-    setContactList(newContactList);
+    setTrashList(newContactList);
   }
-  function moveToTrash(contact){
-    setTrashList([...trashList, contact]);
-  }
-  function makeFavoriteUnfavorite(id) {
-    const newContactList = contactList.map((contact) => {
-      if (contact.id === id) {
-        contact.favorite
-          ? (contact.favorite = false)
-          : (contact.favorite = true);
+  function restoreContactItem(id) {
+    const contactsToBeRestored = [];
+    const newTrashList = trashList.filter((contact)=>{
+      if(contact.id===id){
+        contactsToBeRestored.push(contact);
+        return false;
       }
       return contact;
     });
-    setContactList(newContactList);
+    setContactList([...contactList, ...contactsToBeRestored])
+    setTrashList(newTrashList);
   }
   function select(id) {
-    const newContactList = contactList.map((contact) => {
+    const newContactList = trashList.map((contact) => {
       if (contact.id === id) {
         contact.selected
           ? (contact.selected = false)
@@ -51,10 +42,7 @@ function ContactItem(props) {
       }
       return contact;
     });
-    setContactList(newContactList);
-  }
-  function viewContact() {
-    // navigate("/ViewContact");
+    setTrashList(newContactList);
   }
 
   return (
@@ -79,21 +67,21 @@ function ContactItem(props) {
         )}
       </ListItemIcon>
       <div className="name-div">
-        <ListItemText primary={props.name} onClick={viewContact} />
+        <ListItemText primary={props.name} />
       </div>
       <div className="phone-div">
-        <ListItemText primary={props.phone} onClick={viewContact} />
+        <ListItemText primary={props.phone} />
       </div>
       <div className="email-div">
-        <ListItemText primary={props.email} onClick={viewContact} />
+        <ListItemText primary={props.email} />
       </div>
       <div className="itembuttons-div">
         <IconButton
           onClick={() => {
-            makeFavoriteUnfavorite(props.id);
+            restoreContactItem(props.id);
           }}
         >
-          {props.favorite ? <FavoriteIcon /> : <FavoriteBorderOutlinedIcon />}
+          {<RefreshIcon/>}
         </IconButton>
         <IconButton
           onClick={() => {
@@ -107,4 +95,4 @@ function ContactItem(props) {
   );
 }
 
-export default ContactItem;
+export default DeletedContactItem;

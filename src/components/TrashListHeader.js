@@ -21,12 +21,12 @@ function ListHeader(props) {
   const setTrashList = props.setTrashList;
 
   useEffect(() => {
-    localStorage.setItem("contactList", JSON.stringify(contactList));
-  }, [contactList]);
-
-  useEffect(() => {
     localStorage.setItem("trashList", JSON.stringify(trashList));
   }, [trashList]);
+
+  useEffect(() => {
+    localStorage.setItem("contactList", JSON.stringify(contactList));
+  }, [contactList]);
 
   useEffect(() => {
     if(trashList.length===0 && contactList.length === 0){
@@ -41,37 +41,51 @@ function ListHeader(props) {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
-  const moveAllContactsToTrash = () => {
-    setTrashList([...trashList, ...contactList]);
-    setContactList([]);
+  const deleteAllContacts = () => {
+    setTrashList([]);
     setAnchorEl(null);
   };
+  const restoreAllContacts = ()=>{
+    setContactList([...contactList, ...trashList]);
+    setTrashList([]);
+  }
   const deleteSelectedContacts = () => {
-    const trashListToMove = [];
-    const newContactList = contactList.filter((contact) => {
+    const newContactList = trashList.filter((contact) => {
       if (contact.selected) {
-        trashListToMove.push(contact);
         return false;
       }
       return contact;
     });
-    setTrashList([...trashList, ...trashListToMove]);
-    setContactList(newContactList);
+    setTrashList(newContactList);
+    setSelectionMode(false);
+    setAnchorEl(null);
+  };
+  const restoreSelectedContacts = () => {
+    const restoreList = [];
+    const newContactList = trashList.filter((contact) => {
+      if (contact.selected) {
+        restoreList.push(contact);
+        return false;
+      }
+      return contact;
+    });
+    setContactList([...contactList, ...restoreList]);
+    setTrashList(newContactList);
     setSelectionMode(false);
     setAnchorEl(null);
   };
   const unSelectAll = () => {
-    const newContactList = contactList.map((contact) => {
+    const newContactList = trashList.map((contact) => {
       if (contact.selected) {
         contact.selected = false;
       }
       return contact;
     });
-    setContactList(newContactList);
+    setTrashList(newContactList);
   };
 
   const sortContacts = () => {
-    const newContactList = contactList.sort((a, b) => {
+    const newContactList = trashList.sort((a, b) => {
       if (sorted) {
         if (a.firstName > b.firstName) {
           return 1;
@@ -86,7 +100,7 @@ function ListHeader(props) {
         }
       }
     });
-    setContactList(newContactList);
+    setTrashList(newContactList);
   };
 
   const renderMenu = (
@@ -101,7 +115,12 @@ function ListHeader(props) {
       {selectionMode ? (
         <MenuItem onClick={deleteSelectedContacts}>Delete Selected</MenuItem>
       ) : (
-        <MenuItem onClick={moveAllContactsToTrash}>Delete All</MenuItem>
+        <MenuItem onClick={deleteAllContacts}>Delete All</MenuItem>
+      )}
+      {selectionMode ? (
+        <MenuItem onClick={restoreSelectedContacts}>Restore Selected</MenuItem>
+      ) : (
+        <MenuItem onClick={restoreAllContacts}>Restore All</MenuItem>
       )}
     </Menu>
   );

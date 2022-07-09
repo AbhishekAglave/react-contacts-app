@@ -7,20 +7,20 @@ import AddIcon from "@material-ui/icons/Add";
 import { useNavigate } from "react-router-dom";
 import RefreshIcon from "@material-ui/icons/Refresh";
 
-function NoContacts() {
+function NoTrashContact() {
   const navigate = useNavigate();
   return (
     <ListItem>
       <ListItemIcon></ListItemIcon>
       <div className="name-div">
-        <ListItemText primary="No Contacts Found" />
+        <ListItemText primary="No Trash Contacts Found" />
       </div>
       <div className="phone-div"></div>
       <div className="email-div"></div>
       <div className="itembuttons-div">
         <IconButton
           onClick={() => {
-            navigate("/Trash");
+            navigate("/");
           }}
         >
           <RefreshIcon />
@@ -37,4 +37,4 @@ function NoContacts() {
   );
 }
 
-export default NoContacts;
+export default NoTrashContact;
