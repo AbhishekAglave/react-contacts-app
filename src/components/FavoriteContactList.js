@@ -10,6 +10,7 @@ function FavoriteContactList(props) {
   const setContactList = props.setContactList;
   const trashList = props.trashList;
   const setTrashList = props.setTrashList;
+  const setContactDetails = props.setContactDetails;
   const [selectionMode, setSelectionMode] = useState(false);
   let noFavsFound = true;
   return (
@@ -42,6 +43,7 @@ function FavoriteContactList(props) {
                   setContactList={setContactList}
                   trashList={trashList}
                   setTrashList={setTrashList}
+                  setContactDetails={setContactDetails}
                 />
               );
             }
@@ -62,6 +64,7 @@ function FavoriteContactList(props) {
                     setContactList={setContactList}
                     trashList={trashList}
                     setTrashList={setTrashList}
+                    setContactDetails={setContactDetails}
                   />
                 );
               }

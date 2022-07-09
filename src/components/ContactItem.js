@@ -8,7 +8,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
 
@@ -17,18 +17,19 @@ function ContactItem(props) {
   const setContactList = props.setContactList;
   const trashList = props.trashList;
   const setTrashList = props.setTrashList;
-  // const navigate = useNavigate();
+  const setContactDetails = props.setContactDetails;
+  const navigate = useNavigate();
 
   function deleteContactItem(id) {
     const newContactList = contactList.filter((contact) => {
-      if(contact.id===id){
+      if (contact.id === id) {
         moveToTrash(contact);
       }
       return contact.id !== id;
     });
     setContactList(newContactList);
   }
-  function moveToTrash(contact){
+  function moveToTrash(contact) {
     setTrashList([...trashList, contact]);
   }
   function makeFavoriteUnfavorite(id) {
@@ -53,10 +54,14 @@ function ContactItem(props) {
     });
     setContactList(newContactList);
   }
-  function viewContact() {
-    // navigate("/ViewContact");
+  function viewContact(id) {
+    const newContactDetails = contactList.filter((contact) => {
+      return contact.id === id;
+    });
+    localStorage.setItem("contactDetails", JSON.stringify(newContactDetails[0]));
+    setContactDetails(newContactDetails[0]);
+    navigate("/ViewContact");
   }
-
   return (
     <ListItem button>
       <ListItemIcon>
@@ -75,17 +80,28 @@ function ContactItem(props) {
             />
           )
         ) : (
-          <AccountCircleOutlinedIcon />
+          <AccountCircleOutlinedIcon
+            onClick={() => {
+              viewContact(props.id);
+            }}
+          />
         )}
       </ListItemIcon>
-      <div className="name-div">
-        <ListItemText primary={props.name} onClick={viewContact} />
-      </div>
-      <div className="phone-div">
-        <ListItemText primary={props.phone} onClick={viewContact} />
-      </div>
-      <div className="email-div">
-        <ListItemText primary={props.email} onClick={viewContact} />
+      <div
+        style={{ display: "flex" }}
+        onClick={() => {
+          viewContact(props.id);
+        }}
+      >
+        <div className="name-div">
+          <ListItemText primary={props.name} />
+        </div>
+        <div className="phone-div">
+          <ListItemText primary={props.phone} />
+        </div>
+        <div className="email-div">
+          <ListItemText primary={props.email} />
+        </div>
       </div>
       <div className="itembuttons-div">
         <IconButton

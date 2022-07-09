@@ -78,7 +78,7 @@ export default function NewContactForm(props) {
           <IconButton
           
             onClick={() => {
-              navigate("/");
+              navigate(-1);
             }}
           >
             <ArrowBackIcon className="formBackButton" />

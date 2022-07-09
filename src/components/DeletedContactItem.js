@@ -8,12 +8,15 @@ import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
 import RefreshIcon from "@material-ui/icons/Refresh";
+import { useNavigate } from "react-router-dom";
 
 function DeletedContactItem(props) {
   const contactList = props.contactList;
   const setContactList = props.setContactList;
   const trashList = props.trashList;
   const setTrashList = props.setTrashList;
+  const setContactDetails = props.setContactDetails;
+  const navigate = useNavigate();
 
   function deleteContactItem(id) {
     const newContactList = trashList.filter((contact) => {
@@ -23,14 +26,14 @@ function DeletedContactItem(props) {
   }
   function restoreContactItem(id) {
     const contactsToBeRestored = [];
-    const newTrashList = trashList.filter((contact)=>{
-      if(contact.id===id){
+    const newTrashList = trashList.filter((contact) => {
+      if (contact.id === id) {
         contactsToBeRestored.push(contact);
         return false;
       }
       return contact;
     });
-    setContactList([...contactList, ...contactsToBeRestored])
+    setContactList([...contactList, ...contactsToBeRestored]);
     setTrashList(newTrashList);
   }
   function select(id) {
@@ -43,6 +46,14 @@ function DeletedContactItem(props) {
       return contact;
     });
     setTrashList(newContactList);
+  }
+  function viewContact(id) {
+    const newContactDetails = trashList.filter((contact) => {
+      return contact.id === id;
+    });
+    localStorage.setItem("contactDetails", JSON.stringify(newContactDetails[0]));
+    setContactDetails(newContactDetails[0]);
+    navigate("/ViewContact");
   }
 
   return (
@@ -63,17 +74,28 @@ function DeletedContactItem(props) {
             />
           )
         ) : (
-          <AccountCircleOutlinedIcon />
+          <AccountCircleOutlinedIcon
+            onClick={() => {
+              viewContact(props.id);
+            }}
+          />
         )}
       </ListItemIcon>
-      <div className="name-div">
-        <ListItemText primary={props.name} />
-      </div>
-      <div className="phone-div">
-        <ListItemText primary={props.phone} />
-      </div>
-      <div className="email-div">
-        <ListItemText primary={props.email} />
+      <div
+        style={{ display: "flex" }}
+        onClick={() => {
+          viewContact(props.id);
+        }}
+      >
+        <div className="name-div">
+          <ListItemText primary={props.name} />
+        </div>
+        <div className="phone-div">
+          <ListItemText primary={props.phone} />
+        </div>
+        <div className="email-div">
+          <ListItemText primary={props.email} />
+        </div>
       </div>
       <div className="itembuttons-div">
         <IconButton
@@ -81,7 +103,7 @@ function DeletedContactItem(props) {
             restoreContactItem(props.id);
           }}
         >
-          {<RefreshIcon/>}
+          {<RefreshIcon />}
         </IconButton>
         <IconButton
           onClick={() => {

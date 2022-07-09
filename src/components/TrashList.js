@@ -10,6 +10,7 @@ function TrashList(props) {
   const setContactList = props.setContactList;
   const trashList = props.trashList;
   const setTrashList = props.setTrashList;
+  const setContactDetails = props.setContactDetails;
   const [selectionMode, setSelectionMode] = useState(false);
   return (
     <List>
@@ -40,6 +41,7 @@ function TrashList(props) {
                   setContactList={setContactList}
                   trashList={trashList}
                   setTrashList={setTrashList}
+                  setContactDetails={setContactDetails}
                 />
               );
             })
@@ -56,6 +58,7 @@ function TrashList(props) {
                   setContactList={setContactList}
                   trashList={trashList}
                   setTrashList={setTrashList}
+                  setContactDetails={setContactDetails}
                 />
               );
             })}

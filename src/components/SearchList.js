@@ -8,6 +8,8 @@ import NoContacts from "./NoContacts";
 function SearchList(props) {
   const contactList = props.contactList;
   const setContactList = props.setContactList;
+  const trashList = props.trashList;
+  const setTrashList = props.setTrashList;
   const searchKey = props.searchKey;
   const [selectionMode, setSelectionMode] = useState(false);
   return (
@@ -17,6 +19,8 @@ function SearchList(props) {
         setSelectionMode={setSelectionMode}
         contactList={contactList}
         setContactList={setContactList}
+        trashList={trashList}
+        setTrashList={setTrashList}
       />
       <Divider />
       <div className="contact-list">
@@ -41,6 +45,8 @@ function SearchList(props) {
                     selectionMode={selectionMode}
                     contactList={contactList}
                     setContactList={setContactList}
+                    trashList={trashList}
+                    setTrashList={setTrashList}
                   />
                 );
               } else {
@@ -64,6 +70,8 @@ function SearchList(props) {
                     favorite={contact.favorite}
                     contactList={contactList}
                     setContactList={setContactList}
+                    trashList={trashList}
+                    setTrashList={setTrashList}
                   />
                 );
               } else {

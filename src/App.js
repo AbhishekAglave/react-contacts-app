@@ -8,8 +8,10 @@ import React, { useState } from "react";
 import FavoriteContactList from "./components/FavoriteContactList";
 import SearchList from "./components/SearchList";
 import TrashList from "./components/TrashList";
+import ViewContact from "./components/ViewContact";
 
 function App() {
+  const [contactDetails, setContactDetails] = useState(JSON.parse(localStorage.getItem("contactDetails")) || {});
   const [contactList, setContactList] = useState(
     JSON.parse(localStorage.getItem("contactList")) || [
       {
@@ -68,6 +70,7 @@ function App() {
                     setContactList={setContactList}
                     trashList={trashList}
                     setTrashList={setTrashList}
+                    setContactDetails={setContactDetails}
                   />
                   <AddButton />
                 </>
@@ -81,8 +84,19 @@ function App() {
                     contactList={contactList}
                     setContactList={setContactList}
                     searchKey={searchKey}
+                    trashList={trashList}
+                    setTrashList={setTrashList}
+                    setContactDetails={setContactDetails}
                   />
                   <AddButton />
+                </>
+              }
+            />
+            <Route
+              path="/ViewContact"
+              element={
+                <>
+                  <ViewContact contactDetails={contactDetails} />
                 </>
               }
             />
@@ -95,6 +109,7 @@ function App() {
                     setContactList={setContactList}
                     trashList={trashList}
                     setTrashList={setTrashList}
+                    setContactDetails={setContactDetails}
                   />
                   <AddButton />
                 </>
@@ -109,6 +124,7 @@ function App() {
                     setContactList={setContactList}
                     trashList={trashList}
                     setTrashList={setTrashList}
+                    setContactDetails={setContactDetails}
                   />
                   <AddButton />
                 </>
