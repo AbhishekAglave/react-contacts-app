@@ -29,7 +29,7 @@ function ListHeader(props) {
   }, [trashList]);
 
   useEffect(() => {
-    if(trashList.length===0 && contactList.length === 0){
+    if (trashList.length === 0 && contactList.length === 0) {
       localStorage.removeItem("lastContactId");
     }
   }, [contactList, trashList]);
@@ -99,9 +99,11 @@ function ListHeader(props) {
       onClose={handleMenuClose}
     >
       {selectionMode ? (
-        <MenuItem onClick={deleteSelectedContacts}>Delete Selected</MenuItem>
+        <MenuItem onClick={deleteSelectedContacts}>
+          Move Selected To Trash
+        </MenuItem>
       ) : (
-        <MenuItem onClick={moveAllContactsToTrash}>Delete All</MenuItem>
+        <MenuItem onClick={moveAllContactsToTrash}>Move All To Trash</MenuItem>
       )}
     </Menu>
   );

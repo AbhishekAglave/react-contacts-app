@@ -48,6 +48,7 @@ function ListHeader(props) {
   const restoreAllContacts = ()=>{
     setContactList([...contactList, ...trashList]);
     setTrashList([]);
+    setAnchorEl(null);
   }
   const deleteSelectedContacts = () => {
     const newContactList = trashList.filter((contact) => {
