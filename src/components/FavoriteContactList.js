@@ -8,6 +8,8 @@ import NoFavoriteContact from "./NoFavoriteContact";
 function FavoriteContactList(props) {
   const contactList = props.contactList;
   const setContactList = props.setContactList;
+  const trashList = props.trashList;
+  const setTrashList = props.setTrashList;
   const [selectionMode, setSelectionMode] = useState(false);
   let noFavsFound = true;
   return (
@@ -17,6 +19,8 @@ function FavoriteContactList(props) {
         setContactList={setContactList}
         selectionMode={selectionMode}
         setSelectionMode={setSelectionMode}
+        trashList={trashList}
+        setTrashList={setTrashList}
       />
       <Divider />
       <div className="contact-list">
@@ -36,6 +40,8 @@ function FavoriteContactList(props) {
                   selectionMode={selectionMode}
                   contactList={contactList}
                   setContactList={setContactList}
+                  trashList={trashList}
+                  setTrashList={setTrashList}
                 />
               );
             }
@@ -54,6 +60,8 @@ function FavoriteContactList(props) {
                     favorite={contact.favorite}
                     contactList={contactList}
                     setContactList={setContactList}
+                    trashList={trashList}
+                    setTrashList={setTrashList}
                   />
                 );
               }

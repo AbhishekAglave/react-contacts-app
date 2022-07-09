@@ -93,6 +93,8 @@ function App() {
                   <FavoriteContactList
                     contactList={contactList}
                     setContactList={setContactList}
+                    trashList={trashList}
+                    setTrashList={setTrashList}
                   />
                   <AddButton />
                 </>
