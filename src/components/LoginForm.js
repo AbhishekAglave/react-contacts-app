@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "300px",
+    width: "250px",
     padding: 30,
     alignSelf: "center",
     "& .MuiTextField-root": {

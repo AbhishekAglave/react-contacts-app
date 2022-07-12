@@ -57,7 +57,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {loginState === "loggingIn" ? <div className="loader"><Circles color="#3f51b5" height={80} width={80}/></div> : null}
+      {loginState === "loggingIn" ? <div className="loader"><Circles color="rgb(0, 110, 255)" height={80} width={80}/></div> : null}
       {loginState === "loggedIn" ? (
         <div className="App">
           <header className="App-header">

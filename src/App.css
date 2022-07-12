@@ -110,7 +110,7 @@
 }
 .loader{
   position: absolute;
-  background-color: rgba(89, 139, 204, 0.267);
+  background-color: rgba(89, 139, 204, 0.205);
   width: 100vw;
   height: 100vh;
   display: flex;
