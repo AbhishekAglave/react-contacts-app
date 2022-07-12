@@ -47,8 +47,8 @@ export default function LoginForm(props) {
   return (
     <Card className={classes.root}>
       <form onSubmit={login} autoComplete="off">
-        <Typography variant="h5">Login</Typography>
         <CardContent>
+        <Typography variant="h5">Login</Typography>
           <Typography className={loginErrorClass}>
             You entered wrong credentials!
             <button
