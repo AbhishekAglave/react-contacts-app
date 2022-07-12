@@ -67,7 +67,7 @@ export default function SwipeableTemporaryDrawer() {
                   color: "#3f51b5",
                 }}
               >
-                Contacts
+                My Contacts
               </span>
             }
           />

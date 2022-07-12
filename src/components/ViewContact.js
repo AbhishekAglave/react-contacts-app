@@ -11,12 +11,12 @@ import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: 20,
+    marginTop: 10,
     padding: 20,
     paddingRight: 40,
     alignSelf: "center",
     "& .MuiTypography-root": {
-      margin: theme.spacing(2, 1),
+      margin: theme.spacing(1, 1),
       width: 380,
       height: "100%",
       "@media screen and (max-width: 992px)": {
@@ -47,16 +47,10 @@ export default function ViewContact(props) {
         <CardContent>
           <div className="name_inputs">
             <Typography className="textfield" variant="caption">
-              First Name
+              Name
             </Typography>
             <Typography className="textfield" variant="subtitle1">
-              {contactDetails.firstName}
-            </Typography>
-            <Typography className="textfield" variant="caption">
-              Last Name
-            </Typography>
-            <Typography className="textfield" variant="subtitle1">
-              {contactDetails.lastName}
+              {contactDetails.firstName + " " + contactDetails.lastName}
             </Typography>
           </div>
           <div className="mobile_email_inputs">
@@ -83,9 +77,27 @@ export default function ViewContact(props) {
               </a>
             </Typography>
           </div>
+          <div className="company_titile_inputs">
+            <Typography className="textfield" variant="caption">
+              Company / Institute
+            </Typography>
+            <Typography className="textfield" variant="subtitle1">
+                {contactDetails.company}
+            </Typography>
+            <Typography className="textfield" variant="caption">
+              Title / Role
+            </Typography>
+            <Typography className="textfield" variant="subtitle1">
+
+                {contactDetails.title}
+
+            </Typography>
+          </div>
         </CardContent>
         <CardActions className="form-actions">
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={()=>{
+            navigate("/EditContact");
+          }}>
             Edit
           </Button>
         </CardActions>

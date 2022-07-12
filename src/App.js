@@ -9,22 +9,25 @@ import FavoriteContactList from "./components/FavoriteContactList";
 import SearchList from "./components/SearchList";
 import TrashList from "./components/TrashList";
 import ViewContact from "./components/ViewContact";
+import EditContactForm from "./components/EditContactForm";
 
 function App() {
-  const [contactDetails, setContactDetails] = useState(JSON.parse(localStorage.getItem("contactDetails")) || {});
+  const [contactDetails, setContactDetails] = useState(
+    JSON.parse(localStorage.getItem("contactDetails")) || {}
+  );
   const [contactList, setContactList] = useState(
     JSON.parse(localStorage.getItem("contactList")) || [
       {
-        id: 1,
-        firstName: "firstName",
-        lastName: "lastName1",
-        phone: 9586484596,
-        email: "email@example.com",
-        favorite: false,
+        id: 0,
+        firstName: "Abhishek",
+        lastName: "Aglave",
+        phone: 8530080493,
+        email: "abhishekaglave85@gmail.com",
+        favorite: true,
         selected: false,
       },
       {
-        id: 2,
+        id: 1,
         firstName: "firstName",
         lastName: "lastName2",
         phone: 6988845962,
@@ -33,7 +36,7 @@ function App() {
         selected: false,
       },
       {
-        id: 3,
+        id: 2,
         firstName: "firstName",
         lastName: "lastName3",
         phone: 7412484596,
@@ -97,6 +100,18 @@ function App() {
               element={
                 <>
                   <ViewContact contactDetails={contactDetails} />
+                </>
+              }
+            />
+            <Route
+              path="/EditContact"
+              element={
+                <>
+                  <EditContactForm
+                    contactDetails={contactDetails}
+                    contactList={contactList}
+                    setContactList={setContactList}
+                  />
                 </>
               }
             />

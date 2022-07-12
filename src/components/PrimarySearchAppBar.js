@@ -152,7 +152,7 @@ export default function PrimarySearchAppBar(props) {
           </IconButton>
           <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
             <Typography className={classes.title} variant="h5" noWrap>
-              Contacts
+              My Contacts
             </Typography>
           </Link>
           <div className={classes.grow} />

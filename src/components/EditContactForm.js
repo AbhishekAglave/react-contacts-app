@@ -27,45 +27,45 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NewContactForm(props) {
+export default function EditContactForm(props) {
   const contactList = props.contactList;
   const setContactList = props.setContactList;
+  const contactDetails = props.contactDetails;
+  const contactId = Number(contactDetails.id);
   const firstNameInput = useRef(null);
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [company, setCompany] = useState("");
-  const [title, setTitle] = useState("");
+  const [firstName, setFirstName] = useState(contactDetails.firstName);
+  const [lastName, setLastName] = useState(contactDetails.lastName);
+  const [phone, setPhone] = useState(contactDetails.phone);
+  const [email, setEmail] = useState(contactDetails.email);
+  const [company, setCompany] = useState(contactDetails.company);
+  const [title, setTitle] = useState(contactDetails.title);
   const [successMsgClass, setSuccessMsgClass] = useState("hidden");
   const navigate = useNavigate();
 
-  let contactId = localStorage.getItem("lastContactId") || -1;
+
   function addContact(event) {
-    contactId = Number(contactId);
     event.preventDefault();
-    const newContact = {
-      id: contactId + 1,
-      firstName: firstName,
-      lastName: lastName,
-      phone: phone,
-      email: email,
-      company: company,
-      title: title,
-      favorite: false,
-      selected: false,
-    };
-    console.log(newContact);
-    localStorage.setItem("lastContactId", contactId + 1);
+    const updatedContactList = contactList.filter((contact)=>{
+      if(contact.id===contactId){
+        contact.firstName= firstName;
+        contact.lastName= lastName;
+        contact.phone= phone;
+        contact.email= email;
+        contact.company=company;
+        contact.title = title;
+      }
+      return contact;
+    })
     setFirstName("");
     setLastName("");
     setPhone("");
     setEmail("");
     setCompany("");
     setTitle("");
-    setContactList([...contactList, newContact]);
+    setContactList(updatedContactList);
     setSuccessMsgClass("success_msg");
+    navigate(-1);
   }
 
   useEffect(() => {
@@ -85,11 +85,11 @@ export default function NewContactForm(props) {
           >
             <ArrowBackIcon className="formBackButton" />
           </IconButton>
-          Create New Contact
+          Edit Contact Details
         </Typography>
         <CardContent>
           <Typography className={successMsgClass}>
-            Contact added successfully
+            Contact details updated successfully
             <button
               type="reset"
               className="close"
