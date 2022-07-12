@@ -76,7 +76,7 @@ export default function EditContactForm(props) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
-      <form onSubmit={addContact} autoComplete="off" className="newContactForm">
+      <form onSubmit={addContact} autoComplete="off" className="EditContactForm">
         <Typography variant="h5">
           <IconButton
             onClick={() => {

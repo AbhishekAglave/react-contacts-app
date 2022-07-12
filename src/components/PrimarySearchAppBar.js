@@ -79,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PrimarySearchAppBar(props) {
+  const setLoginState = props.setLoginState;
   const navigate = useNavigate();
   const classes = useStyles();
   const searchKey = props.searchKey;
@@ -116,8 +117,17 @@ export default function PrimarySearchAppBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Log out</MenuItem>
+      <MenuItem
+        onClick={() => {
+          setLoginState("loggingOut");
+          setTimeout(async () => {
+            await setLoginState("loggedOut");
+          }, 1000);
+          handleMenuClose();
+        }}
+      >
+        Log out
+      </MenuItem>
     </Menu>
   );
 
