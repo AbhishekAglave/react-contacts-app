@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 30,
     alignSelf: "center",
     "& .MuiTextField-root": {
-      margin: theme.spacing(2, 1),
+      margin: theme.spacing(2, 0),
       width: "100%",
       height: "100%",
       "@media screen and (max-width: 992px)": {
@@ -87,7 +87,7 @@ export default function LoginForm(props) {
           </div>
         </CardContent>
         <CardActions className="form-actions">
-          <Button type="submit" variant="contained" color="primary">
+          <Button style={{marginTop: "10px"}} type="submit" variant="contained" color="primary">
             Login
           </Button>
         </CardActions>
