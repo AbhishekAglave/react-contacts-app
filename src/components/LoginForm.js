@@ -37,8 +37,8 @@ export default function LoginForm(props) {
     const passWord = '8530080493';
     if(userName===username && passWord===password){
       setLoginState('loggingIn');
-        setTimeout(async ()=>{
-          await setLoginState('loggedIn');
+        setTimeout(()=>{
+          setLoginState('loggedIn');
         }, 1000);
     }else{
       setLoginErrorClass('error_msg');
