@@ -2,7 +2,6 @@ import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
@@ -10,29 +9,28 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import { IconButton } from "@material-ui/core";
-import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
-import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
-// import ArchiveRoundedIcon from '@material-ui/icons/ArchiveRounded';
+import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
+import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import ArrowBackIosOutlinedIcon from "@material-ui/icons/ArrowBackIosOutlined";
-import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import { NavLink } from "react-router-dom";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
   list: {
     width: 250,
   },
   fullList: {
     width: "auto",
   },
-});
+}));
 
-export default function SwipeableTemporaryDrawer() {
+export default function SwipeableTemporaryDrawer(props) {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    top: false,
     left: false,
-    bottom: false,
-    right: false,
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -79,50 +77,48 @@ export default function SwipeableTemporaryDrawer() {
         <NavLink to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <ListItem button>
             <ListItemIcon>
-              <HomeRoundedIcon/>
+              <HomeRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
         </NavLink>
-        <NavLink to="/Favorites" style={{ textDecoration: "none", color: "inherit" }}>
-        <ListItem button>
-          <ListItemIcon>
-            <FavoriteRoundedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Favorites" />
-        </ListItem>
+        <NavLink
+          to="/Favorites"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <ListItem button>
+            <ListItemIcon>
+              <FavoriteRoundedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Favorites" />
+          </ListItem>
         </NavLink>
-        {/* <ListItem button>
-          <ListItemIcon>
-            <ArchiveRoundedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Other Contacts" />
-        </ListItem> */}
-        <NavLink to="/Trash" style={{ textDecoration: "none", color: "inherit" }}>
-        <ListItem button>
-          <ListItemIcon>
-            <DeleteRoundedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Trash" />
-        </ListItem>
+        <NavLink
+          to="/Trash"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <ListItem button>
+            <ListItemIcon>
+              <DeleteRoundedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Trash" />
+          </ListItem>
         </NavLink>
       </List>
     </div>
   );
-
   return (
-    <div>
+    <>
       {["left"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button
-            edge="start"
+          <IconButton
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
             onClick={toggleDrawer(anchor, true)}
           >
             <MenuIcon />
-          </Button>
+          </IconButton>
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}
@@ -133,6 +129,6 @@ export default function SwipeableTemporaryDrawer() {
           </SwipeableDrawer>
         </React.Fragment>
       ))}
-    </div>
+    </>
   );
 }

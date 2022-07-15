@@ -12,13 +12,13 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import SwipeableTemporaryDrawer from "./SwipeableTemporaryDrawer";
 import { Link, useNavigate } from "react-router-dom";
+// import MenuIcon from "@material-ui/icons/Menu";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
-    flexGrow: "1",
+    flexGrow: "2",
   },
   menuButton: {
-    width: 50,
     marginRight: theme.spacing(2),
   },
   title: {
@@ -152,14 +152,7 @@ export default function PrimarySearchAppBar(props) {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <SwipeableTemporaryDrawer />
-          </IconButton>
+          <SwipeableTemporaryDrawer />
           <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
             <Typography className={classes.title} variant="h5" noWrap>
               My Contacts
