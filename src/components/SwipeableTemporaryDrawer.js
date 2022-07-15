@@ -15,7 +15,7 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 // import ArchiveRoundedIcon from '@material-ui/icons/ArchiveRounded';
 import ArrowBackIosOutlinedIcon from "@material-ui/icons/ArrowBackIosOutlined";
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles({
   list: {
@@ -76,36 +76,36 @@ export default function SwipeableTemporaryDrawer() {
           </IconButton>
         </ListItem>
         <Divider />
-        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+        <NavLink to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <ListItem button>
             <ListItemIcon>
               <HomeRoundedIcon/>
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
-        </Link>
-        <Link to="/Favorites" style={{ textDecoration: "none", color: "inherit" }}>
+        </NavLink>
+        <NavLink to="/Favorites" style={{ textDecoration: "none", color: "inherit" }}>
         <ListItem button>
           <ListItemIcon>
             <FavoriteRoundedIcon />
           </ListItemIcon>
           <ListItemText primary="Favorites" />
         </ListItem>
-        </Link>
+        </NavLink>
         {/* <ListItem button>
           <ListItemIcon>
             <ArchiveRoundedIcon />
           </ListItemIcon>
           <ListItemText primary="Other Contacts" />
         </ListItem> */}
-        <Link to="/Trash" style={{ textDecoration: "none", color: "inherit" }}>
+        <NavLink to="/Trash" style={{ textDecoration: "none", color: "inherit" }}>
         <ListItem button>
           <ListItemIcon>
             <DeleteRoundedIcon />
           </ListItemIcon>
           <ListItemText primary="Trash" />
         </ListItem>
-        </Link>
+        </NavLink>
       </List>
     </div>
   );

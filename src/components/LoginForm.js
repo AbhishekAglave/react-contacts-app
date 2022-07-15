@@ -31,25 +31,25 @@ export default function LoginForm(props) {
   const [loginErrorClass, setLoginErrorClass] = useState("hidden");
   const classes = useStyles();
 
-  function login(event){
+  function login(event) {
     event.preventDefault();
-    const userName = 'abhishek.aglave';
-    const passWord = '8530080493';
-    if(userName===username && passWord===password){
-      setLoginState('loggingIn');
-        setTimeout(()=>{
-          setLoginState('loggedIn');
-        }, 1000);
-    }else{
-      setLoginErrorClass('error_msg');
+    const userName = "abhishek.aglave";
+    const passWord = "8530080493";
+    if (userName === username && passWord === password) {
+      setLoginState("loggingIn");
+      setTimeout(() => {
+        setLoginState("loggedIn");
+      }, 1000);
+    } else {
+      setLoginErrorClass("error_msg");
     }
   }
   return (
     <Card className={classes.root}>
       <form onSubmit={login} autoComplete="off">
         <CardContent>
-        <Typography variant="h5">Login</Typography>
-          <Typography className={loginErrorClass}>
+          <Typography variant="h5">Login</Typography>
+          <Typography variant="caption" className={loginErrorClass}>
             You entered wrong credentials!
             <button
               type="reset"
@@ -87,7 +87,12 @@ export default function LoginForm(props) {
           </div>
         </CardContent>
         <CardActions className="form-actions">
-          <Button style={{marginTop: "10px"}} type="submit" variant="contained" color="primary">
+          <Button
+            style={{ marginTop: "10px" }}
+            type="submit"
+            variant="contained"
+            color="primary"
+          >
             Login
           </Button>
         </CardActions>
