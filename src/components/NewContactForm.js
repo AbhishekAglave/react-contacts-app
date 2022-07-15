@@ -9,12 +9,12 @@ import Button from "@material-ui/core/Button";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import IconButton from "@material-ui/core/IconButton";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 20,
     padding: 20,
-    alignSelf: "center",
     "& .MuiTextField-root": {
       margin: theme.spacing(2, 1),
       width: 380,
@@ -79,14 +79,16 @@ export default function NewContactForm(props) {
       <form onSubmit={addContact} autoComplete="off" className="newContactForm">
         <Typography variant="h5">
           <IconButton
+            style={{ marginBottom: "4px" }}
             onClick={() => {
               navigate(-1);
             }}
           >
-            <ArrowBackIcon className="formBackButton" />
+            <ArrowBackIcon />
           </IconButton>
           Create New Contact
         </Typography>
+        <Divider />
         <CardContent>
           <Typography className={successMsgClass}>
             Contact added successfully

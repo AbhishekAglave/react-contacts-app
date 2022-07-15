@@ -95,7 +95,9 @@
 .formBackButton{
   padding-bottom: 4px;
 }
-
+.cardBackButton{
+  padding-bottom: 4px;
+}
 .login_fields{
   display: flex;
   flex-direction: column;

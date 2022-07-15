@@ -9,12 +9,12 @@ import Button from "@material-ui/core/Button";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import IconButton from "@material-ui/core/IconButton";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 20,
     padding: 20,
-    alignSelf: "center",
     "& .MuiTextField-root": {
       margin: theme.spacing(2, 1),
       width: 380,
@@ -40,23 +40,21 @@ export default function EditContactForm(props) {
   const [email, setEmail] = useState(contactDetails.email);
   const [company, setCompany] = useState(contactDetails.company);
   const [title, setTitle] = useState(contactDetails.title);
-  const [successMsgClass, setSuccessMsgClass] = useState("hidden");
   const navigate = useNavigate();
-
 
   function addContact(event) {
     event.preventDefault();
-    const updatedContactList = contactList.filter((contact)=>{
-      if(contact.id===contactId){
-        contact.firstName= firstName;
-        contact.lastName= lastName;
-        contact.phone= phone;
-        contact.email= email;
-        contact.company=company;
+    const updatedContactList = contactList.filter((contact) => {
+      if (contact.id === contactId) {
+        contact.firstName = firstName;
+        contact.lastName = lastName;
+        contact.phone = phone;
+        contact.email = email;
+        contact.company = company;
         contact.title = title;
       }
       return contact;
-    })
+    });
     setFirstName("");
     setLastName("");
     setPhone("");
@@ -64,7 +62,6 @@ export default function EditContactForm(props) {
     setCompany("");
     setTitle("");
     setContactList(updatedContactList);
-    setSuccessMsgClass("success_msg");
     navigate(-1);
   }
 
@@ -76,30 +73,24 @@ export default function EditContactForm(props) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
-      <form onSubmit={addContact} autoComplete="off" className="EditContactForm">
+      <form
+        onSubmit={addContact}
+        autoComplete="off"
+        className="EditContactForm"
+      >
         <Typography variant="h5">
           <IconButton
+            style={{ marginBottom: "4px" }}
             onClick={() => {
               navigate(-1);
             }}
           >
-            <ArrowBackIcon className="formBackButton" />
+            <ArrowBackIcon />
           </IconButton>
           Edit Contact Details
         </Typography>
+        <Divider />
         <CardContent>
-          <Typography className={successMsgClass}>
-            Contact details updated successfully
-            <button
-              type="reset"
-              className="close"
-              onClick={() => {
-                setSuccessMsgClass("hidden");
-              }}
-            >
-              🗙
-            </button>
-          </Typography>
           <div className="name_inputs">
             <TextField
               id="standard-error"
@@ -108,7 +99,7 @@ export default function EditContactForm(props) {
               required
               onChange={(event) => {
                 setFirstName(event.target.value);
-                setSuccessMsgClass("hidden");
+          
               }}
               value={firstName}
               ref={firstNameInput}
@@ -120,7 +111,7 @@ export default function EditContactForm(props) {
               className="textfield"
               onChange={(event) => {
                 setLastName(event.target.value);
-                setSuccessMsgClass("hidden");
+                
               }}
               value={lastName}
             />
@@ -135,7 +126,7 @@ export default function EditContactForm(props) {
                 const number = event.target.value;
                 if (!isNaN(number)) {
                   setPhone(number);
-                  setSuccessMsgClass("hidden");
+                 
                 }
               }}
               value={phone}
@@ -148,7 +139,7 @@ export default function EditContactForm(props) {
               type="email"
               onChange={(event) => {
                 setEmail(event.target.value);
-                setSuccessMsgClass("hidden");
+                
               }}
               value={email}
             />
@@ -160,7 +151,7 @@ export default function EditContactForm(props) {
               className="textfield"
               onChange={(event) => {
                 setCompany(event.target.value);
-                setSuccessMsgClass("hidden");
+                
               }}
               value={company}
             />
@@ -170,7 +161,7 @@ export default function EditContactForm(props) {
               className="textfield"
               onChange={(event) => {
                 setTitle(event.target.value);
-                setSuccessMsgClass("hidden");
+               
               }}
               value={title}
             />
