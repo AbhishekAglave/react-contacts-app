@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
       width: 380,
       height: "100%",
       "@media screen and (max-width: 992px)": {
-        width: "100%",
         margin: theme.spacing(0, 1),
       },
     },
