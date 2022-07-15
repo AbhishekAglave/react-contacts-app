@@ -39,6 +39,7 @@ export default function LoginForm(props) {
       setLoginState("loggingIn");
       setTimeout(() => {
         setLoginState("loggedIn");
+        window.scrollTo(0, 0);
       }, 1000);
     } else {
       setLoginErrorClass("error_msg");
