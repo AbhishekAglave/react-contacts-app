@@ -13,12 +13,14 @@ import Divider from "@material-ui/core/Divider";
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 10,
-    padding: 20,
+    padding: 10,
     "& .MuiTypography-root": {
       margin: theme.spacing(1, 1),
       width: 380,
       height: "100%",
       "@media screen and (max-width: 992px)": {
+        width: "100%",
+        minWidth: "250px",
         margin: theme.spacing(0, 1),
       },
     },

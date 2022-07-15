@@ -11,6 +11,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import { useNavigate } from "react-router-dom";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
+import { display } from "@mui/system";
 
 function ContactItem(props) {
   const contactList = props.contactList;
@@ -58,7 +59,10 @@ function ContactItem(props) {
     const newContactDetails = contactList.filter((contact) => {
       return contact.id === id;
     });
-    localStorage.setItem("contactDetails", JSON.stringify(newContactDetails[0]));
+    localStorage.setItem(
+      "contactDetails",
+      JSON.stringify(newContactDetails[0])
+    );
     setContactDetails(newContactDetails[0]);
     navigate("/ViewContact");
   }
@@ -88,7 +92,7 @@ function ContactItem(props) {
         )}
       </ListItemIcon>
       <div
-        style={{ display: "flex" }}
+        style={{ display: "flex", height: "inherit", alignItems: "center" }}
         onClick={() => {
           viewContact(props.id);
         }}

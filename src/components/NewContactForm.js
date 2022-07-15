@@ -13,8 +13,8 @@ import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: 20,
-    padding: 20,
+    marginTop: 10,
+    padding: 10,
     "& .MuiTextField-root": {
       margin: theme.spacing(2, 1),
       width: 380,
@@ -41,7 +41,7 @@ export default function NewContactForm(props) {
   const [successMsgClass, setSuccessMsgClass] = useState("hidden");
   const navigate = useNavigate();
 
-  let contactId = localStorage.getItem("lastContactId") || -1;
+  let contactId = localStorage.getItem("lastContactId") || 3;
   function addContact(event) {
     contactId = Number(contactId);
     event.preventDefault();

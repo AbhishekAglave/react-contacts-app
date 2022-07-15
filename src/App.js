@@ -46,7 +46,7 @@ function App() {
         firstName: "Sample",
         lastName: "Contact2",
         phone: 999999999,
-        email: "email@example2.com",
+        email: "email2@example.com",
         favorite: false,
         selected: false,
       },
