@@ -97,6 +97,7 @@ function FavoriteListHeader(props) {
   return (
     <ListItem className="list_header">
       <ListItemIcon>
+        <IconButton>
         {selectionMode ? (
           <CheckBoxOutlinedIcon
             onClick={() => {
@@ -112,6 +113,7 @@ function FavoriteListHeader(props) {
             }}
           />
         )}
+        </IconButton>
       </ListItemIcon>
       <div className="name-div">
         <ListItemText primary="Name" />

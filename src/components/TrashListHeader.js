@@ -29,7 +29,7 @@ function ListHeader(props) {
   }, [contactList]);
 
   useEffect(() => {
-    if(trashList.length===0 && contactList.length === 0){
+    if (trashList.length === 0 && contactList.length === 0) {
       localStorage.removeItem("lastContactId");
     }
   }, [contactList, trashList]);
@@ -45,11 +45,11 @@ function ListHeader(props) {
     setTrashList([]);
     setAnchorEl(null);
   };
-  const restoreAllContacts = ()=>{
+  const restoreAllContacts = () => {
     setContactList([...contactList, ...trashList]);
     setTrashList([]);
     setAnchorEl(null);
-  }
+  };
   const deleteSelectedContacts = () => {
     const newContactList = trashList.filter((contact) => {
       if (contact.selected) {
@@ -129,21 +129,23 @@ function ListHeader(props) {
   return (
     <ListItem className="list_header">
       <ListItemIcon>
-        {selectionMode ? (
-          <CheckBoxOutlinedIcon
-            onClick={() => {
-              setSelectionMode(false);
-              unSelectAll();
-            }}
-          />
-        ) : (
-          <CheckBoxOutlineBlankIcon
-            onClick={() => {
-              setSelectionMode(true);
-              unSelectAll();
-            }}
-          />
-        )}
+        <IconButton>
+          {selectionMode ? (
+            <CheckBoxOutlinedIcon
+              onClick={() => {
+                setSelectionMode(false);
+                unSelectAll();
+              }}
+            />
+          ) : (
+            <CheckBoxOutlineBlankIcon
+              onClick={() => {
+                setSelectionMode(true);
+                unSelectAll();
+              }}
+            />
+          )}
+        </IconButton>
       </ListItemIcon>
       <div className="name-div">
         <ListItemText primary="Name" />

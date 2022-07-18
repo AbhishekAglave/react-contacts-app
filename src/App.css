@@ -1,8 +1,6 @@
 .MuiListItem-root {
   height: 54px;
 }
-
-
 /********* Main element Styling ********/
 
 .contact-list {
@@ -49,7 +47,6 @@
   bottom: 20px;
   right: 20px;
 }
-
 /********** add new contact form styling **********/
 
 .form-actions{

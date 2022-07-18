@@ -67,6 +67,7 @@ function ContactItem(props) {
   return (
     <ListItem button>
       <ListItemIcon>
+        <IconButton>
         {props.selectionMode ? (
           props.selected ? (
             <CheckBoxOutlinedIcon
@@ -88,6 +89,7 @@ function ContactItem(props) {
             }}
           />
         )}
+        </IconButton>
       </ListItemIcon>
       <div
         style={{ display: "flex", height: "inherit", alignItems: "center" }}

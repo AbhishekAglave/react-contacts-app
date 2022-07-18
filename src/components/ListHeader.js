@@ -111,6 +111,7 @@ function ListHeader(props) {
   return (
     <ListItem className="list_header">
       <ListItemIcon>
+        <IconButton>
         {selectionMode ? (
           <CheckBoxOutlinedIcon
             onClick={() => {
@@ -126,6 +127,7 @@ function ListHeader(props) {
             }}
           />
         )}
+        </IconButton>
       </ListItemIcon>
       <div className="name-div">
         <ListItemText primary="Name" />

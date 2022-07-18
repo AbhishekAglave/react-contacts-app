@@ -59,6 +59,7 @@ function DeletedContactItem(props) {
   return (
     <ListItem button>
       <ListItemIcon>
+        <IconButton>
         {props.selectionMode ? (
           props.selected ? (
             <CheckBoxOutlinedIcon
@@ -80,6 +81,7 @@ function DeletedContactItem(props) {
             }}
           />
         )}
+        </IconButton>
       </ListItemIcon>
       <div
         style={{ display: "flex" }}
